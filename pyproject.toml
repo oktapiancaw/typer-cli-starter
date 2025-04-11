@@ -1,0 +1,25 @@
+[project]
+name = "typer-cli-starter"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "oktapian",email = "oktapian@jkt1.ebdesk.com"}
+]
+readme = "README.md"
+requires-python = "3.10.12"
+dependencies = [
+    "typer (>=0.15.2,<0.16.0)",
+    "pydantic (>=2.11.3,<3.0.0)",
+    "pydantic-settings (>=2.8.1,<3.0.0)",
+    "tomli (>=2.2.1,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{ include = "src" }]
+
+[tool.poetry.scripts]
+ty-cli = "src.main:app"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
