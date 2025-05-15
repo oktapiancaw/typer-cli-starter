@@ -2,10 +2,11 @@ from typing import Tuple, Type
 
 from pydantic_settings import (
     BaseSettings,
-    SettingsConfigDict,
-    PyprojectTomlConfigSettingsSource,
     PydanticBaseSettingsSource,
+    PyprojectTomlConfigSettingsSource,
+    SettingsConfigDict,
 )
+from typing_extensions import Any
 
 
 class ApplicationConfig(BaseSettings):
@@ -18,11 +19,10 @@ class ApplicationConfig(BaseSettings):
 
 
 class ProjectConfig(BaseSettings):
-
     name: str
     version: str = "0.1.0"
     description: str = ""
-    authors: list[dict] = []
+    authors: list[dict[str, Any]] = []
 
     @classmethod
     def settings_customise_sources(

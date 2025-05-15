@@ -1,7 +1,6 @@
-import os
 import logging
 import logging.config
-
+import os
 from enum import Enum
 
 
@@ -16,11 +15,16 @@ class CustomLogLevel(int, Enum):
     CRITICAL = 50
 
 
-# Create logs directory if it doesn't exist
-if not os.path.exists("./logs"):
-    os.mkdir("./logs")
+def success(self, message, *args, **kws):
+    if self.isEnabledFor(CustomLogLevel.SUCCESS):
+        self._log(CustomLogLevel.SUCCESS, message, args, **kws)
 
-# Define a custom log level names
+
+def connection(self, message, *args, **kws):
+    if self.isEnabledFor(CustomLogLevel.CONNECTION):
+        self._log(CustomLogLevel.CONNECTION, message, args, **kws)
+
+
 logging.addLevelName(CustomLogLevel.SUCCESS, "SUCCESS")
 logging.addLevelName(CustomLogLevel.CONNECTION, "CONNECTION")
 
@@ -69,7 +73,7 @@ LOGCONFIG = {
         "console": {
             "class": "logging.StreamHandler",
             "formatter": "colored",
-            "level": CustomLogLevel.INFO,
+            "level": CustomLogLevel.NOTSET,
         },
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
@@ -97,23 +101,18 @@ LOGCONFIG = {
     },
 }
 
-# Load the logging configuration
-logging.config.dictConfig(LOGCONFIG)
 
+def setup_logging(log_path: str = "./logs"):
+    # Create logs directory if it doesn't exist
+    if not os.path.exists(log_path):
+        os.mkdir(log_path)
 
-# Create custom logging methods
-def success(self, message, *args, **kws):
-    if self.isEnabledFor(CustomLogLevel.SUCCESS):
-        self._log(CustomLogLevel.SUCCESS, message, args, **kws)
+    try:
+        # Load the logging configuration
+        logging.config.dictConfig(LOGCONFIG)
+    except Exception as e:
+        print(f"Failed to configure logging: {e}")
+        logging.basicConfig(level=logging.DEBUG)
 
-
-def connection(self, message, *args, **kws):
-    if self.isEnabledFor(CustomLogLevel.CONNECTION):
-        self._log(CustomLogLevel.CONNECTION, message, args, **kws)
-
-
-logging.Logger.success = success  # type: ignore
-logging.Logger.connection = connection  # type: ignore
-
-# Create a logger instance
-LOGGER = logging.getLogger(__name__)
+    logging.Logger.connection = connection  # type: ignore[attr-defined]
+    logging.Logger.success = success  # type: ignore[attr-defined]
