@@ -1,0 +1,40 @@
+version: "3"
+
+vars:
+  COMMIT_TOML: "docs: :bookmark: change toml version to "
+  COMMIT_CHANGELOG: "feat: :memo: update changelog"
+
+tasks:
+  test:
+    desc: "Run tests"
+    cmds:
+      - pytest
+
+  merge-to-master:
+    desc: "Merge specified branch into master, generate changelog, and push"
+    vars:
+      BRANCH: '{{.BRANCH | default "development"}}'
+    cmds:
+      - echo "🔄 Merging {{.BRANCH}} into master..."
+      - git checkout master
+      - git pull origin master
+      - git fetch origin {{.BRANCH}}
+      - git merge origin/{{.BRANCH}}
+      - echo "📝 Generating changelog..."
+      - git cliff --output CHANGELOG.md
+      - git add CHANGELOG.md
+      - git commit -m "{{.COMMIT_CHANGELOG}}" || echo "No changes to commit for changelog."
+      - git push origin master
+
+  release:
+    desc: "Update version, commit, and push changes"
+    vars:
+      VERSION: '{{.VERSION | default "latest"}}'
+    cmds:
+      - echo "🚀 Preparing release for version {{.VERSION}}..."
+      - git checkout master
+      - git pull origin master
+      - sed -i "s/version = .*/version = \"{{.VERSION}}\"/" pyproject.toml
+      - git add pyproject.toml
+      - git commit -m "{{.COMMIT_TOML}}{{.VERSION}}" || echo "No version change to commit."
+      - git push origin master
