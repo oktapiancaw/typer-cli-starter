@@ -1,6 +1,6 @@
 [project]
 name = "typer-cli-starter"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = [
     {name = "oktapian",email = "oktapian@jkt1.ebdesk.com"}
