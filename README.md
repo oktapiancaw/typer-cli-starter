@@ -1,12 +1,12 @@
 
 ---
 # Typer CLI Starter
-**This is starter template for creating a CLI project using Typer framework**
+This is starter template for creating a CLI project using Typer framework
 
 
 
-*\* Disclaimer:*
-> *The description and all doc strings were created with the help of AI, so please forgive any writing errors. The coding was done by myself.*
+> **Disclaimer:**
+> *The description and all doc strings were created with the help of AI, so please forgive any writing errors🙏. But the script was done by myself😠.*
 >
 > \- Okta
 
@@ -45,7 +45,7 @@ One of the best features of `uv` is running your script without manually managin
 # Run the CLI directly
 uv run python src/main.py --help
 ```
-If you notice, in pyprojectoml in the project.scripts section, there is a command, and it can be run like this
+If you notice, in `pyproject.toml` in the *project.scripts* section, there is a command, and it can be run like this
 
 ```bash
 # Run the CLI directly

@@ -38,7 +38,7 @@ COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
 
-    
+
 # ===
 # 🚀 Runtime / Development stage
 # ===
@@ -54,4 +54,4 @@ ENV PATH="${VENV_PATH}/bin:$PATH"
 # Optionally set working directory to /app
 WORKDIR /app
 
-CMD [""]
+CMD ["cli-exec"]

@@ -5,7 +5,7 @@ vars:
   COMMIT_CHANGELOG: "feat: :memo: Add changelog entry for "
 
   IMAGE_NAME: "typer-cli-starter"
-  REGISTRY_URL: "registry.blackeye.id/de-tools"
+  REGISTRY_URL: "ghcr.io/oktapiancaw"
 
 tasks:
   build:
