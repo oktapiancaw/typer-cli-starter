@@ -1,16 +1,11 @@
-import logging
-
 import typer
 
 from src.commands import base
-from src.configs.log import CustomLogLevel, setup_logging
+from src.configs import CustomLogLevel, logging, project_meta
 
 app = typer.Typer(pretty_exceptions_show_locals=False)
 
-# ? Initialize logging
-setup_logging()
-logger = logging.getLogger(__name__)
-
+LOGGER = logging.getLogger(project_meta.name)
 
 app.add_typer(base.app, name="base")
 
@@ -23,7 +18,7 @@ def main(
 ):
     if verbose:
         logging.getLogger().setLevel(CustomLogLevel.INFO)
-        logger.debug("Verbose mode enabled")
+        LOGGER.debug("Verbose mode enabled")
     else:
         logging.getLogger().setLevel(CustomLogLevel.NOTSET)
 

@@ -1,28 +1,89 @@
 [project]
 name = "typer-cli-starter"
 version = "0.1.1"
-description = ""
-authors = [
-    {name = "oktapian",email = "oktapian@jkt1.ebdesk.com"}
-]
+description = "This is starter template for creating a CLI project using Typer framework"
 readme = "README.md"
-requires-python = "3.10.12"
+requires-python = ">=3.10.12"
 dependencies = [
-    "typer (>=0.15.2,<0.16.0)",
-    "pydantic (>=2.11.3,<3.0.0)",
-    "pydantic-settings (>=2.8.1,<3.0.0)",
-    "tomli (>=2.2.1,<3.0.0)"
+    "module-typica>=0.2.12",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.13.0",
+    "requests>=2.32.5",
+    "tomli>=2.4.0",
+    "typer>=0.24.0",
 ]
 
-[tool.poetry]
-packages = [{ include = "src" }]
 
-[tool.poetry.scripts]
-ty-cli = "src.main:app"
+[dependency-groups]
+elastic = [
+    "elasticsearch7>=7.17.13",
+    "elasticsearch8>=8.19.3",
+]
+kafka = [
+    "confluent-kafka>=2.13.0",
+]
+mongo = [
+    "pymongo>=4.16.0",
+]
+postgresql = [
+    "psycopg>=3.3.2",
+]
+rmq = [
+    "pika>=1.3.2",
+]
 
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.3.5"
+
+[project.scripts]
+cli-exec = "src.main:app"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.sdist]
+include = ["src"]
+
+[tool.hatch.build.targets.wheel]
+include = ["src"]
+
+
+# ----------------------------------------------------------
+#                 RUFF CONFIGURATION
+# ----------------------------------------------------------
+[tool.ruff]
+src = ["src"]
+
+# Linting rule sets
+select = [
+    "F",    # Pyflakes
+    "E",    # Pycodestyle errors
+    "W",    # Pycodestyle warnings
+    "I",    # Import sorting
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "S",    # flake8-bandit (security)
+]
+
+ignore = [
+    "E501",
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = ["src"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]      # allow asserts
+"__init__.py" = ["F401"]  # allow unused imports
+
+
+# ----------------------------------------------------------
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

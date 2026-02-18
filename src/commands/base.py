@@ -3,7 +3,9 @@ from typing import Annotated
 
 import typer
 
-logger = logging.getLogger(__name__)
+from src.configs import project_meta
+
+logger = logging.getLogger(project_meta.name)
 app = typer.Typer(pretty_exceptions_show_locals=False)
 
 
