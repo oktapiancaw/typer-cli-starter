@@ -1,11 +1,10 @@
-
----
 # Typer CLI Starter
-This is starter template for creating a CLI project using Typer framework
-
+This is Starter template for creating a CLI project using Typer framework
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 
 > **Disclaimer:**
+>
 > *The description and all doc strings were created with the help of AI, so please forgive any writing errors🙏. But the script was done by myself😠.*
 >
 > \- Okta
@@ -26,16 +25,19 @@ uv sync & uv lock
 
 Since this boilerplate supports various data sources, you can install specific dependency groups depending on your engine's requirements:
 
-| Group | Command |
-| --- | --- |
-| **All Groups** | `uv sync --all-groups` |
-| **Kafka** | `uv sync --group kafka` |
-| **PostgreSQL** | `uv sync --group postgresql` |
-| **Elasticsearch** | `uv sync --group elastic` |
-| **MongoDB** | `uv sync --group mongo` |
-| **RabbitMQ** | `uv sync --group rmq` |
+| Group | Command | Description |
+| --- | --- | --- |
+| **All Groups** | `uv sync --all-groups` | Install All drivers |
+| **CKafka** | `uv sync --group kafka` | Install Conflunet Kafka driver |
+| **PostgreSQL** | `uv sync --group postgresql` | Install Psycopg driver |
+| **PG Alchemy** | `uv sync --group pg-alchemy` | Install SQLAlchemy, Pandas, Psycopg drivers | 
+| **Elasticsearch** | `uv sync --group elastic` | Install Elasticsearch 7 & 8 Drivers |
+| **MongoDB** | `uv sync --group mongo` | Install PyMongo driver |
+| **RabbitMQ** | `uv sync --group rmq` | Install Pika driver |
 
 ---
+
+then you can use the driver located in the `src/connection/**/*.py` path
 
 ## Usage with uv run
 
@@ -51,6 +53,18 @@ If you notice, in `pyproject.toml` in the *project.scripts* section, there is a 
 # Run the CLI directly
 uv run cli-exec
 ```
+
+## License
+
+This project is licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+
+```text
+Copyright (C) 2026 Oktapiancaw
+```
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [LICENSE](LICENSE) file for more details.
 
 
 ## Contributors
