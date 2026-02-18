@@ -2,7 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.2] - 2026-02-18
+
+### 🚀 Features
+
+- PostgreSQL using SQLalchemy & Pandas support
+
+### 📚 Documentation
+
+- Apply GPLv3 License
+- :bookmark: change toml version to 0.2.2
+
 ## [0.2.1] - 2026-02-18
+
+### 🚀 Features
+
+- :memo: Add changelog entry for 0.2.1
 
 ### 📚 Documentation
 
