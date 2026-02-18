@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.1] - 2026-02-18
+
+### 📚 Documentation
+
+- Change a little bit on README.md, and some deployment setting
+- :bookmark: change toml version to 0.2.1
+
 ## [0.2.0] - 2026-02-18
 
 ### 🚀 Features
@@ -10,6 +17,7 @@ All notable changes to this project will be documented in this file.
 - Add base sample test
 - Add go-task & cliff intergrations
 - Improve taskfile
+- :memo: Add changelog entry for 0.2.0
 
 ### 🚜 Refactor
 
