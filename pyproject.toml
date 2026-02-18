@@ -25,6 +25,11 @@ kafka = [
 mongo = [
     "pymongo>=4.16.0",
 ]
+pg-alchemy = [
+    "pandas>=2.3.3",
+    "psycopg[binary]>=3.3.2",
+    "sqlalchemy>=2.0.46",
+]
 postgresql = [
     "psycopg>=3.3.2",
 ]
